@@ -1,0 +1,17 @@
+workflows:
+  react-native:
+      name: React Native App
+      environment:
+          vars:
+            XCODE_WORKSPACE: "{{ADD WORKSPACE NAME HERE}}"
+            XCODE_SCHEME: "{{ADD SCHEME NAME HERE}}"
+          node: latest
+      scripts:
+        -  npm install
+        -  echo "sdk.dir=C:\Users\saree\AppData\Local\Android\Sdk" > "$FCI+BUILD_DIR/android/local.properties"
+        - |
+            # build Android
+            cd android
+            ./gradlew assembleDebug
+      artifacts:
+        - android/app/build/output/**/*.apk 
